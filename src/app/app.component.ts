@@ -23,20 +23,17 @@ export class AppComponent {
   addRow(dvId: string, cId: string, mb: string) {
     var row = { dvId: dvId.trim(), cId: cId.trim(), mb: mb.trim() };
     this.rowList = [...this.rowList, row];
-    console.log(this.rowList);
     this.dvId.nativeElement.value = "";
     this.cId.nativeElement.value = "";
     this.mb.nativeElement.value = "";
   }
   deleteItem(index: number) {
-    console.log("DELETE ITEM ", index);
     var _rowList: any = [];
     for (let i in this.rowList) {
       if (index != parseInt(i)) {
         _rowList = [..._rowList, this.rowList[i]];
       }
     }
-    console.log("_rowList ITEM ", _rowList);
 
     this.rowList = _rowList;
   }
@@ -56,22 +53,7 @@ export class AppComponent {
   }
 
   generate() {
-    console.log("HELLO123123123123", this.rowList);
-
-    if (this.rowList.length == 0) {
-      if (
-        this.dvId.nativeElement.value != "" ||
-        this.cId.nativeElement.value != "" ||
-        this.mb.nativeElement.value != ""
-      ) {
-        this.clearSql();
-        this.result(
-          this.dvId.nativeElement.value,
-          this.cId.nativeElement.value,
-          this.mb.nativeElement.value
-        );
-      }
-    } else {
+    if (this.rowList.length > 0) {
       this.clearSql();
       for (let i in this.rowList) {
         var data = this.rowList[i];
@@ -84,7 +66,7 @@ export class AppComponent {
         this.result(data.dvId, data.cId, data.mb);
       }
     }
-  }
+}
   result(dvId: string, cid: string, mb: string) {
     if (dvId != "") {
       this.sqlTextOpenAccount +=
