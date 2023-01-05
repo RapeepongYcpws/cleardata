@@ -107,5 +107,9 @@ delete from tbl_open_account_rp_request_info where id_card_number='${cid}';` +
         `delete from tbl_open_account_dopa_attempt where mobile_no = '${mb}';
 delete from tbl_staged_open_account where mobile_no = '${mb}';` + "\n";
     }
+    
+    this.sqlTextProfiles += 
+    `DELETE  from tbl_mobile_detect where detected_mobile_no = '${mb}';
+DELETE  from tbl_user_profile where otp_mobile_no = '${mb}';`
   }
 }
